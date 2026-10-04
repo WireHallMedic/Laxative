@@ -14,7 +14,6 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # let's load some things from files
 token = open("token.txt", "r").read()
-systemPassword = open("password.txt", "r").read()
 lax_engine = laxative_engine.LaxativeEngine()
 
 intents = discord.Intents.default()
@@ -49,7 +48,7 @@ async def on_message(message):
       outStr = lax_engine.get_reply_message(content)
       
    # print results
-   if outFile != None:
+   if outStr != None:
       await message.channel.send(outStr)
 
 #strip message for processing
