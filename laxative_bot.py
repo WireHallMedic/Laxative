@@ -46,6 +46,9 @@ async def on_message(message):
    
    if len(content) == 4:
       outStr = lax_engine.get_reply_message(content)
+   
+   if content == "laxative":
+      outStr = "I'm Laxative; I make Poopling easier. If you post a four-letter word, I'll list every word that is one letter off.\n\nPoople uses a private dictionary that is much smaller than the full list of four-letter English words; words I give you are not guaranteed to be in their dictionary."
       
    # print results
    if outStr != None:
