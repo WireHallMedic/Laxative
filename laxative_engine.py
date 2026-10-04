@@ -41,6 +41,29 @@ class LaxativeEngine:
          if word_a[i] != word_b[i]:
             dist += 1
       return dist
+   
+   def get_neighbors(self, word):
+      """
+      Get all words 1 word off from argument
+      """
+      neighbors = []
+      word = word.upper()
+      for prospect in self.word_list:
+         if self.get_distance_metric(word, prospect) == 1:
+            neighbors.append(prospect)
+      return neighbors
+   
+   def get_reply_message(self, word):
+      """
+      Get a reply formatted for a Discord message
+      """
+      str = word.upper() + ": \n"
+      neighbors = self.get_neighbors(word)
+      for i in range(len(neighbors)):
+         str = str + neighbors[i]
+         if i < len(neighbors) - 1:
+            str = str + ", "
+      return str
       
 
 if __name__ == "__main__":
