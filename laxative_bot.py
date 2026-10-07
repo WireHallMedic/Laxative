@@ -49,6 +49,8 @@ async def on_message(message):
    
    if content == "laxative":
       out_str = "I'm Laxative; I make Poopling easier. If you post a four-letter word, I'll list every word that is one letter off.\n\nPoople uses a private dictionary that is much smaller than the full list of four-letter English words; words I give you are not guaranteed to be in their dictionary."
+      out_str += "\n\nYou can add words to the dictionary by typing `add [word]`. You can add more than one word at a time, just separate them with spaces."
+      out_str += "\n\nYou can remove words from the dictionary by typing `remove [word]`. You can remove more than one at a time, by separating them with spaces."
    elif re.search(ADD_REGEX, content):
       search_results = re.search(ADD_REGEX, content).group(0).split()
       out_str = ""
