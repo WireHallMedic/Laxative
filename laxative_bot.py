@@ -62,8 +62,15 @@ async def on_message(message):
             lax_engine.add(word)
             out_str += f"Added {word}.\n"
    elif re.search(REMOVE_REGEX, content):
-      out_str = "Remove detected"
-      out_str += " " + re.search(REMOVE_REGEX, content).group(0).split()[1]
+      search_results = re.search(REMOVE_REGEX, content).group(0).split()
+      out_str = ""
+      for i in range(1, len(search_results)):
+         word = search_results[i].strip().upper()
+         if not lax_engine.is_in_word_list(word):
+            out_str += f"{word} not in dictionary.\n"
+         else:
+            lax_engine.remove(word)
+            out_str += f"Removed {word}.\n"
    elif len(content) == 4:
       out_str = lax_engine.get_reply_message(content)
       
