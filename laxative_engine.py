@@ -89,22 +89,10 @@ class LaxativeEngine:
       self.save_word_list()
       self.load_word_list()
    
-   def can_add(self, word):
-      """
-      
-      """
-      return (not (word.upper() in self.word_list)) and len(word) == 4
-   
-   def can_remove(self, word):
-      """
-      
-      """
-      return self.word_list.contains(word.upper())
+   def is_in_word_list(self, word):
+      return word.upper() in self.word_list
       
       
 
 if __name__ == "__main__":
    lax_eng = LaxativeEngine()
-   print(lax_eng.can_add("last"))
-   print(lax_eng.can_add("zxft"))
-   lax_eng.validate_word_list()
