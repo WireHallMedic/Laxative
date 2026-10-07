@@ -23,6 +23,14 @@ class LaxativeEngine:
             formatted_list.append(word.upper())
       return formatted_list
    
+   def save_word_list(self):
+      """
+      Save over existing file.
+      """
+      with open("word_list.txt", "w") as file:
+         for word in self.word_list:
+            file.write(f"{word.upper()} ")
+   
    def validate_word_list(self):
       """
       Make sure all words in dict are valid
@@ -64,7 +72,39 @@ class LaxativeEngine:
          if i < len(neighbors) - 1:
             str = str + ", "
       return str
+   
+   def remove(self, word):
+      """
+      Remove a word from the dictionary, save it, and reload.
+      """
+      self.word_list.remove(word.upper());
+      self.save_word_list()
+      self.load_word_list()
+   
+   def add(self, word):
+      """
+      Add a word to the dictionary, save it, and reload.
+      """
+      self.word_list.append(word.upper());
+      self.save_word_list()
+      self.load_word_list()
+   
+   def can_add(self, word):
+      """
+      
+      """
+      return (not (word.upper() in self.word_list)) and len(word) == 4
+   
+   def can_remove(self, word):
+      """
+      
+      """
+      return self.word_list.contains(word.upper())
+      
       
 
 if __name__ == "__main__":
    lax_eng = LaxativeEngine()
+   print(lax_eng.can_add("last"))
+   print(lax_eng.can_add("zxft"))
+   lax_eng.validate_word_list()
