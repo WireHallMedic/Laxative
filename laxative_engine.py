@@ -1,10 +1,3 @@
-import discord
-import discord.ext
-from discord.ext.commands import Bot
-import os
-import sys
-import time
-import socket
 from pathlib import Path
 
 class LaxativeEngine:
