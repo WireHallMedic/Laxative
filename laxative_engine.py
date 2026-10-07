@@ -5,23 +5,32 @@ import os
 import sys
 import time
 import socket
+from pathlib import Path
 
 class LaxativeEngine:
    def __init__(self):
-      self.word_list = self.load_word_list()
+      self.load_word_list()
       self.validate_word_list()
    
    def load_word_list(self):
       """
       Load word list from text file
       """
-      with open("word_list.txt", "r") as file:
+      # make sure local dict exists, otherwise use default
+      file_name = "word_list.txt"
+      local_file = Path(file_name)
+      if not local_file.is_file():
+         file_name = "word_list_backup.txt"
+      with open(file_name, "r") as file:
          content = file.read()
          raw_list = content.split()
          formatted_list = []
          for word in raw_list:
             formatted_list.append(word.upper())
-      return formatted_list
+         self.word_list = formatted_list
+      # save if we had to load from backup
+      if file_name == "word_list_backup.txt":
+         self.save_word_list()
    
    def save_word_list(self):
       """
